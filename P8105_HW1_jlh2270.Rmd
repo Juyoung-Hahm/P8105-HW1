@@ -1,0 +1,7 @@
+---
+title: "P8105_HW1_jlh2270"
+author: Juyoung Hahm
+date: 9/13/2020
+output: github_document
+---
+
