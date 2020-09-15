@@ -4,4 +4,66 @@ author: Juyoung Hahm
 date: 9/13/2020
 output: github_document
 ---
+```{r include = FALSE}
+library(tidyverse)
+```
+
+# Problem 1
+
+Create a dataframe that consists: random sample of size 10 from a standard Normal distribution, a logical vector indicating whether elements of the sample are greater than 0, a character vector of length 10, and a factor vector of length 10, with 3 different factor “levels”.
+```{r creating a dataframe, message = FALSE}
+sample_df = tibble(
+  sample_rnorm = rnorm(10),
+  sample_logical = sample_rnorm > 0,
+  sample_char = c("a","b","c","d","e","f","g","h","i","j"),
+  sample_factor = factor(c("high","middle","low","high","middle","low","high",
+                    "middle","low","middle"))
+)
+```
+Here are the means of `sample_df`.
+
+* `sample_rnorm` mean is `r mean(pull(sample_df,sample_rnorm))`.
+* `sample_logical` mean is `r mean(pull(sample_df,sample_logical))`.
+* `sample_char` mean is `r mean(pull(sample_df,sample_char))`.
+* `sample_factor` mean is `r mean(pull(sample_df,sample_factor))`.
+
+We cannot find the mean of the character vector and factor vector. 
+
+```{r apply as.numeric, results='hide', warning = FALSE}
+as.numeric(sample_df$sample_logical)
+as.numeric(sample_df$sample_char)
+as.numeric(sample_df$sample_factor)
+```
+When applying the function `as.numeric` to the logical, character and factor vector, we can see that  logical and factor vectors turn into numbers, but for the character vector, it still comes out as NA. With this, we know that we canfind the mean of logical and factor vectors using `as.numeric`. 
+
+Next, we are going to convert logical vector to other data types and  multiply the random sample by the result.
+```{r error = F, results = 'hide', warning = FALSE, message = FALSE}
+as.numeric(sample_df$sample_logical) * sample_df$sample_rnorm
+as.factor(sample_df$sample_logical) * sample_df$sample_rnorm
+as.numeric( as.factor(sample_df$sample_logical)) * sample_df$sample_rnorm
+```
+* After converting the logical vector to numeric, and multiply the random sample by the result, we get: 
+
+`r as.numeric(sample_df$sample_logical) * sample_df$sample_rnorm`
+
+* After converting the logical vector to a factor, and multiply the random sample by the result, we get: 
+
+`r as.factor(sample_df$sample_logical) * sample_df$sample_rnorm`
+
+* After converting the logical vector to a factor and then convert the result to numeric, and multiply the random sample by the result, we get: 
+
+`r as.numeric( as.factor(sample_df$sample_logical)) * sample_df$sample_rnorm`
+
+
+# Problem 2
+```{r include = F}
+library(palmerpenguins)
+```
+
+Load the `penguins` dataset:
+
+```{r results='hide'}
+penguins = data("penguins", package = "palmerpenguins")
+penguins
+```
 
