@@ -63,7 +63,23 @@ library(palmerpenguins)
 Load the `penguins` dataset:
 
 ```{r results='hide'}
-penguins = data("penguins", package = "palmerpenguins")
-penguins
+data("penguins", package = "palmerpenguins")
+penguins_new = na.omit(penguins)
+```
+Looking at the data, there are 3 categorical and 5 numerical variables. we can see there are 3 different `species`: Adelie, Gentoo, Chinstrap. This data was collected from 3 different `island`: Biscoe, Dream, Torgersen. There's also a `sex` (Male/Female) variable.For numerical variables, there's`bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`, and `year`. We are most likely to see the relationship between  bill length, bill depth, flipper length and body mass.
+
+There are `r nrow(penguins) * ncol(penguins)` data sets. After deleting the NA data, we now have `r nrow(penguins_new) * ncol(penguins_new)` data sets. 
+
+The mean of each numerical variables are:
+
+* `bill_length_mm`: `r mean(penguins_new$bill_length_mm)`
+* `bill_depth_mm`: `r mean(penguins_new$bill_depth_mm)`. 
+* `flipper_length_mm`: `r mean(penguins_new$flipper_length_mm)`. 
+* `body_mass_g`: `r mean(penguins_new$body_mass_g)`. 
+
+To see a precise relationship, we are going to make a scatterplot of `flipper_length_mm` vs `bill_length_mm `.
+```{r}
+ggplot(penguins_new, aes(x = bill_length_mm, y = flipper_length_mm, color = species))  + labs(y = "Flipper length (mm)", x = "Bill length (mm)", title = "Flipper and bill length \n of three species of penguins") + geom_point()
+
 ```
 
