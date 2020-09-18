@@ -65,10 +65,11 @@ Load the `penguins` dataset:
 ```{r results='hide'}
 data("penguins", package = "palmerpenguins")
 penguins_new = na.omit(penguins)
+names(penguins_new)
 ```
-Looking at the data, there are 3 categorical and 5 numerical variables. we can see there are 3 different `species`: Adelie, Gentoo, Chinstrap. This data was collected from 3 different `island`: Biscoe, Dream, Torgersen. There's also a `sex` (Male/Female) variable.For numerical variables, there's`bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`, and `year`. We are most likely to see the relationship between  bill length, bill depth, flipper length and body mass.
+Looking at the data, there are 3 categorical and 5 numerical variables (`r names(penguins_new)`. We can see there are 3 different `species`: Adelie, Gentoo, Chinstrap. This data was collected from 3 different `island`: Biscoe, Dream, Torgersen. There's also a `sex` (Male/Female) variable.For numerical variables, there's`bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`, and `year`. We are most likely to see the relationship between  bill length, bill depth, flipper length and body mass.
 
-There are `r nrow(penguins) * ncol(penguins)` data sets. After deleting the NA data, we now have `r nrow(penguins_new) * ncol(penguins_new)` data sets in `penguins_new`. 
+There are `r nrow(penguins) * ncol(penguins)` data sets in `penguins`. After deleting the NAs, we now have `r nrow(penguins_new) * ncol(penguins_new)` data sets in `penguins_new`. 
 
 The mean of each numerical variables are:
 
